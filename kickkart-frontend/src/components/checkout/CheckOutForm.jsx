@@ -6,7 +6,7 @@ import {
     createRazorpayOrder,
     verifyPayment,
 } from "../../api/paymentService";
-import { loadRazorpay } from "../../utils/loadRazorpay";
+import { loadRazorpay } from "../../utils/LoadRazorpay";
 
 const CheckoutForm = ({ totalAmount }) => {
 
