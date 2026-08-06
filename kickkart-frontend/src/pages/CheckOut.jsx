@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CheckoutForm from "../components/checkout/CheckoutForm";
+import CheckoutForm from "../components/checkout/CheckOutForm";
 import OrderSummary from "../components/checkout/OrderSummary";
 
 const Checkout = () => {
