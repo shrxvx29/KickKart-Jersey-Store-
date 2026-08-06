@@ -25,7 +25,7 @@ function Login() {
     };
     const handleGoogleLogin = () => {
     window.location.href =
-        `${import.meta.env.VITE_API_URL}/oauth2/authorization/google`;
+  "https://kickkart-jersey-store-production.up.railway.app/oauth2/authorization/google";
     };
 
     const handleSubmit = async (e) => {
