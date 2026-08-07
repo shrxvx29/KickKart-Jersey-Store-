@@ -193,22 +193,6 @@ Optimized for
 
 ---
 
-# 📸 Screenshots
-
-Add screenshots here.
-
-- Login Page
-- Register Page
-- Home Page
-- Shop Page
-- Product Details
-- Cart
-- Checkout
-- Orders
-- Admin Dashboard
-
----
-
 # ⚙️ Installation
 
 ## Clone Repository
