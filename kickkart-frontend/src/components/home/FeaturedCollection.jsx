@@ -28,7 +28,7 @@ function FeaturedCollections() {
                 </div>
 
                 {/* Cards */}
-
+                <Link to = "/shop">
                 <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
 
                     {collections.map((item) => (
@@ -88,6 +88,9 @@ function FeaturedCollections() {
                     ))}
 
                 </div>
+                </Link>
+
+                
 
             </div>
         </section>
