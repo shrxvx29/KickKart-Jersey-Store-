@@ -33,6 +33,7 @@ import net.coobird.thumbnailator.Thumbnails;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
+    private final CloudinaryService cloudinaryService;
 
     @Override
     public ProductResponse createProduct(ProductRequest request) {
@@ -40,20 +41,7 @@ public class ProductServiceImpl implements ProductService {
         try {
 
             MultipartFile image = request.getImage();
-
-            String fileName = UUID.randomUUID() + "_" + image.getOriginalFilename();
-
-            Path uploadPath = Paths.get("uploads");
-
-            if (!Files.exists(uploadPath)) {
-                Files.createDirectories(uploadPath);
-            }
-
-            Thumbnails.of(image.getInputStream())
-                    .size(800, 800)
-                    .outputQuality(0.8)
-                    .keepAspectRatio(true)
-                    .toFile(uploadPath.resolve(fileName).toFile());
+            String imageUrl = cloudinaryService.uploadImage(image);
 
             Product product = new Product();
 
@@ -64,8 +52,7 @@ public class ProductServiceImpl implements ProductService {
             product.setDescription(request.getDescription());
 
             // Save image path in DB
-            product.setImageUrl("/uploads/" + fileName);
-
+            product.setImageUrl(imageUrl);
             Product savedProduct = productRepository.save(product);
 
             return ProductResponse.builder()
@@ -188,35 +175,9 @@ public class ProductServiceImpl implements ProductService {
 
             if (image != null && !image.isEmpty()) {
 
-                // Delete old image
-                if (product.getImageUrl() != null) {
+                String imageUrl = cloudinaryService.uploadImage(image);
 
-                    Path oldImage = Paths.get(
-                            "uploads",
-                            Paths.get(product.getImageUrl()).getFileName().toString()
-                    );
-
-                    Files.deleteIfExists(oldImage);
-
-                }
-
-                // Save new image
-                String fileName =
-                        UUID.randomUUID() + "_" + image.getOriginalFilename();
-
-                Path uploadPath = Paths.get("uploads");
-
-                if (!Files.exists(uploadPath)) {
-                    Files.createDirectories(uploadPath);
-                }
-
-                Thumbnails.of(image.getInputStream())
-                        .size(800, 800)
-                        .outputQuality(0.8)
-                        .keepAspectRatio(true)
-                        .toFile(uploadPath.resolve(fileName).toFile());
-
-                product.setImageUrl("/uploads/" + fileName);
+                product.setImageUrl(imageUrl);
 
             }
 
