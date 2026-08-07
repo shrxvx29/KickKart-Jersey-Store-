@@ -145,8 +145,7 @@ const ProductModal = ({
 
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 text-black">
 
-            <div className="bg-white rounded-2xl w-full max-w-5xl p-8">
-
+<div className="bg-white rounded-2xl w-full max-w-5xl max-h-[95vh] overflow-y-auto p-5 sm:p-6 md:p-8">
                 <div className="flex justify-between items-center mb-8">
 
                     <h2 className="text-2xl font-bold">
@@ -161,7 +160,7 @@ const ProductModal = ({
 
                 <form
                     onSubmit={handleSubmit}
-                    className="grid md:grid-cols-2 gap-8"
+className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8"
                 >
                                     {/* Left */}
 
@@ -223,15 +222,14 @@ const ProductModal = ({
 
                     <div>
 
-                        <label className="border-2 border-dashed rounded-2xl h-80 flex flex-col justify-center items-center cursor-pointer overflow-hidden">
+                        <label className="border-2 border-dashed rounded-2xl h-60 sm:h-72 md:h-80 flex flex-col justify-center items-center cursor-pointer overflow-hidden">
 
                             {preview ? (
 
                                 <img
                                     src={preview}
                                     alt="Preview"
-                                    className="w-full h-full object-cover"
-                                />
+className="w-full h-full object-contain bg-gray-50"                                />
 
                             ) : (
 
@@ -263,21 +261,18 @@ const ProductModal = ({
 
                     {/* Buttons */}
 
-                    <div className="md:col-span-2 flex justify-end gap-4">
-
+<div className="lg:col-span-2 flex flex-col-reverse sm:flex-row justify-end gap-3">
                         <button
                             type="button"
                             onClick={onClose}
-                            className="px-6 py-3 border rounded-xl hover:bg-gray-100"
-                        >
+className="w-full sm:w-auto px-6 py-3 border rounded-xl hover:bg-gray-100"                        >
                             Cancel
                         </button>
 
                         <button
                             type="submit"
                             disabled={loading}
-                            className="px-6 py-3 bg-black text-white rounded-xl hover:bg-gray-800 disabled:opacity-50"
-                        >
+className="w-full sm:w-auto px-6 py-3 bg-black text-white rounded-xl hover:bg-gray-800 disabled:opacity-50"                        >
                             {loading
                                 ? "Saving..."
                                 : editingProduct
