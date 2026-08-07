@@ -361,7 +361,7 @@ https://github.com/shrxvx29
 
 ### LinkedIn
 
-(Add your LinkedIn profile link here)
+https://www.linkedin.com/in/saravanankhere
 
 ---
 
