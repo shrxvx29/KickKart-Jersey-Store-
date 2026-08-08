@@ -27,9 +27,6 @@ public class JwtFilter extends OncePerRequestFilter {
             HttpServletResponse response,
             FilterChain filterChain)
             throws ServletException, IOException {
-        System.out.println("==== JWT FILTER ====");
-        System.out.println("URI: " + request.getRequestURI());
-        System.out.println("Authorization: " + request.getHeader("Authorization"));
 
         final String authHeader = request.getHeader("Authorization");
 
@@ -65,9 +62,6 @@ public class JwtFilter extends OncePerRequestFilter {
                 SecurityContextHolder
                         .getContext()
                         .setAuthentication(authentication);
-                System.out.println("===== JWT AUTHENTICATED =====");
-                System.out.println("Email: " + email);
-                System.out.println("Authorities: " + userDetails.getAuthorities());
             }
         }
 
