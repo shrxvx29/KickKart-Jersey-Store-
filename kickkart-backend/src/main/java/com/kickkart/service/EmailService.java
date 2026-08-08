@@ -5,12 +5,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Value;
 
 @Service
 @RequiredArgsConstructor
 public class EmailService {
 
     private final JavaMailSender mailSender;
+
+    @Value("${spring.mail.username}")
+    private String mailUsername;
 
     public void sendWelcomeEmail(String to, String fullName) {
 
@@ -20,6 +24,7 @@ public class EmailService {
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
             helper.setTo(to);
+            helper.setFrom(mailUsername, "KickKart");
             helper.setSubject("⚽ Welcome to KickKart!");
 
             String html = """
@@ -58,7 +63,7 @@ public class EmailService {
                                             </p>
 
                                             <div style="text-align:center;margin:40px 0;">
-                                                <a href="http://localhost:5173/home"
+                                                   <a href="https://kickkartstore.netlify.app/home"
                                                    style="background:#2563eb;
                                                           color:white;
                                                           text-decoration:none;
@@ -105,6 +110,7 @@ public class EmailService {
                     new MimeMessageHelper(message, true, "UTF-8");
 
             helper.setTo(to);
+            helper.setFrom(mailUsername, "KickKart");
             helper.setSubject("🔐 KickKart Password Reset OTP");
 
             String html = """
