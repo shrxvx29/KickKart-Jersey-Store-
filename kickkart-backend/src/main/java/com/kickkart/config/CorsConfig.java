@@ -20,6 +20,7 @@ public class CorsConfig {
 
         config.setAllowedOrigins(
                 List.of("http://localhost:5173",
+                        "https://kickkartstore.netlify.app",
                         "https://kickkartstore.netlify.app")
         );
 
