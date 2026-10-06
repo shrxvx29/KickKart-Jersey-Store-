@@ -10,8 +10,7 @@ KickKart is a modern full-stack football jersey e-commerce platform where users 
 https://kickkartstore.netlify.app
 
 ### ⚙️ Backend API
-https://kickkart-jersey-store-production.up.railway.app
-
+https://kickkart-jersey-store.onrender.com
 ---
 
 # ✨ Features
@@ -230,7 +229,7 @@ cd kickkart-backend
 ## Frontend (.env)
 
 ```env
-VITE_API_URL=https://kickkart-jersey-store-production.up.railway.app/api
+VITE_API_URL=https://kickkart-jersey-store.onrender.com
 
 VITE_RAZORPAY_KEY_ID=YOUR_RAZORPAY_KEY
 ```
