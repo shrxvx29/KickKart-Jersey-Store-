@@ -24,9 +24,8 @@ function Login() {
         });
     };
     const handleGoogleLogin = () => {
-    window.location.href =
-  "https://kickkart-jersey-store.onrender.com/oauth2/authorization/google";
-    };
+  window.location.href = `${import.meta.env.VITE_API_URL}/oauth2/authorization/google`;
+};
 
     const handleSubmit = async (e) => {
 
