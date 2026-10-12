@@ -1,5 +1,7 @@
 package com.kickkart.config;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 import com.kickkart.security.JwtFilter;
 import com.kickkart.security.OAuth2SuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +76,18 @@ public class SecurityConfig {
                         .authenticated()
 
                 )
+
+                .exceptionHandling(ex -> ex
+                        .defaultAuthenticationEntryPointFor(
+                                (request, response, exception) ->
+                                        response.sendError(
+                                                HttpStatus.UNAUTHORIZED.value(),
+                                                "Authentication required"
+                                        ),
+                                request -> request.getRequestURI().startsWith("/api/")
+                        )
+                )
+
                 .oauth2Login(oauth-> oauth.successHandler(oAuth2SuccessHandler))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .httpBasic(Customizer.withDefaults());
