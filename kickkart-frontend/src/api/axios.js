@@ -1,14 +1,14 @@
+
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: `${import.meta.env.VITE_API_URL}/api`,
   headers: {
     "Content-Type": "application/json",
   },
 });
-console.log(import.meta.env.VITE_API_URL);
 
-// Attach JWT Token
+// Attach JWT token
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
@@ -22,15 +22,12 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Handle Unauthorized Response
+// Handle unauthorized responses
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
       console.error("Unauthorized. Please login again.");
-      // Optional:
-      // localStorage.removeItem("token");
-      // window.location.href = "/login";
     }
 
     return Promise.reject(error);
